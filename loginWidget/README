@@ -1,0 +1,67 @@
+#1 add config to .bashrc 
+alias god="python ~/bin/login.py"
+
+
+
+[mqq@98_31 ~]$god help
+NAME
+        god - convenient command for ssh/mysql.
+
+SYNOPSIS
+        god [OPTION]...| god mysql [OPTION]
+EXAMPLE
+        god 109
+
+        god login
+
+        god hadoop
+AUTHOR
+        Written by allsochen
+DESCRIPTION
+
+        god cron         ----Name: VideoCronServer -Desc: Cron
+        god html         ----Name: VideoHtmlServer -Desc: SZ
+        god center       ----Name: VideoCenterServer -Desc: SZ
+        
+[mqq@98_31 ~]$god all
+--------host info----------
+god 123                 -- 10.12.197.123
+god 111                 -- 172.17.150.111
+god 222                 -- 10.123.128.222
+--------node info----------
+god cron        0       ----Name: VideoCronServer -Desc: Cron
+god cron        1       ----Name: VideoCronServer -Desc: Cron
+god html        0       ----Name: VideoHtmlServer -Desc: SZ
+god html        1       ----Name: VideoHtmlServer -Desc: TJ
+god html        2       ----Name: VideoHtmlServer -Desc: SH
+god center      0       ----Name: VideoCenterServer -Desc: SZ
+god center      1       ----Name: VideoCenterServer -Desc: SZ
+god center      2       ----Name: VideoCenterServer -Desc: TJ
+god center      3       ----Name: VideoCenterServer -Desc: TJ
+god center      4       ----Name: VideoCenterServer -Desc: SH
+god center      5       ----Name: VideoCenterServer -Desc: SH   
+
+[mqq@98_31 ~]$god html
++-----+---------------+-------------------------+--------------------+
+|index|ip             |name                     |description         |
++-----+---------------+-------------------------+--------------------+
+|0    |10.209.7.83    |VideoHtmlServer          |SZ                  |
+|1    |10.233.136.75  |VideoHtmlServer          |TJ                  |
+|2    |10.150.170.93  |VideoHtmlServer          |SH                  |
++-----+---------------+-------------------------+--------------------+
+
+Please input your index to login: 
+
+
+[mqq@98_31 ~]$god mysql
+Usage: god mysql [database] [env]
+[mqq@98_31 ~]$god mysql video
++-----+-----+------------------------------+---------------+-----+----------+----------+----------+
+|index|env  |database                      |ip             |port |user      |password  |charset   |
++-----+-----+------------------------------+---------------+-----+----------+----------+----------+
+|0    |test |db_name                       |10.123.123.123 |1234 |XXXX      |          |utf8      |
+|1    |REAL |db_name                       |10.123.123.123 |1234 |XXXX      |XXXXX     |utf8      |
++-----+-----+------------------------------+---------------+-----+----------+----------+----------+
+
+Please input your index to login mysql:
+

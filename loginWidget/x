@@ -1,0 +1,76 @@
+#!/usr/bin/expect  
+#告诉操作系统脚本里的代码使用expect这个shell来执行
+if { [llength $argv] < 1 } {
+    puts "### USAGE:  $argv0 ip "
+    exit 1
+}
+#超时时间 -1永不超时
+set timeout 3
+
+set ip [lindex $argv 0]
+set base_dir [ exec dirname $argv0 ]
+log_file $base_dir/expect.log
+set passone p11111
+set passtwo p22222
+set passthree p33333 
+
+#spawn 是expect这个shell的内部指令
+#给ssh运行进程加个壳，用来传递交互指令。 
+spawn ssh -q -p3300 mqq@$ip
+
+#interact 
+#默认情况登录完成后会退出，而不是留在远程终端上。
+#此命令作用是执行完成后保持交互状态，把控制权交给控制台，开始手工操作。
+
+expect  {
+        "assword:"  {
+                #执行交互动作，与手工输入密码的动作等效
+                send "$passone\r"
+                expect { 
+                    "mail" {interact;exit}
+                    "login" {interact;exit}
+                    "assword:" {set timeout -1}
+                }
+                send "$passtwo\r"
+                expect { 
+                    "mail" {interact;exit}
+                    "login" {interact;exit}
+                    "assword:" {set timeout -1}
+                }   
+                send "$passthree\r" 
+                expect {
+                    "mail" {interact;exit}
+                    "login" {interact;exit}
+                    eof {send_user "\nconnect $ip password error\n";exit}
+                }
+        }
+
+        "(yes/no)?" {
+                send "yes\r"
+                expect "assword:"
+                send "$passone\r"
+                expect { 
+                    "mail" {interact;exit}
+                    "login" {interact;exit}
+                    "assword:" {set timeout -1}
+                }       
+                send "$passtwo\r"
+                expect {
+                    "mail" {interact;exit}
+                    "login" {interact;exit}
+                    "assword:" {set timeout -1}
+                }
+                send "$passthree\r" 
+                expect {
+                    "mail" {interact;exit}
+                    "login" {interact;exit}
+                    eof {send_user "\nconnect $ip password error\n";exit}
+                }
+
+        }
+        incorrect {send_user "\ninvalid password or account\n";exit}
+
+        eof {send_user "\nconnection to host $ip failed: $expect_out(buffer)\n";exit}
+
+        timeout {send_user "\n$ip connect timeout $timeout sec\n";exit}
+}
