@@ -1,0 +1,31 @@
+#
+# There are three column every line
+# The first element is the whole real servername ,not short or lower
+# The second is the enviroment key word,like test,gray, sz1_real
+# The third one is the ip
+# by randyma 2015-7-70
+#
+SpdyProxyServer|test|10.130.11.52
+SpdyProxyServer|gray-real|10.208.141.140
+SpdyProxyServer|gray-real|10.208.143.33
+SpdyProxyServer|gray-real|10.219.136.14
+SkeeterProxyServer|test|172.27.201.183
+SkeeterProxyServer|gray|10.219.136.13
+SkeeterProxyServer|gray|10.208.141.140
+SkeeterProxyServer|sz2-real-3.3G|10.231.129.87
+SkeeterProxyServer|sz2-real-2.5G|10.129.130.220
+SecurityProxyServer|gray|10.208.143.33
+LightBrowserServer|test|172.27.201.184
+ProxyBypassServer|test|10.130.11.52
+ProxyBypassServer|gray|10.219.136.114
+AdFailDetectionServer|test|10.196.23.78
+AdFailDetectionServer|real|10.166.147.233
+AdFailDetectionServer|real|10.240.129.19
+build_compire|real|10.12.22.161
+build_compire|real|10.12.22.164
+RandySimpleTestServer|test|10.196.23.78
+DirectAdFilterWebServer|test|10.130.11.52
+HttpProxyServer|test|10.130.11.52
+AdBlockServer|test|10.196.23.78
+AdSolutionServer|test|172.27.201.183
+SubResListServer|sz1-real|10.241.96.152
